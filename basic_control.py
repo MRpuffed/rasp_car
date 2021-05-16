@@ -86,19 +86,10 @@ class BasicControl(object):
 
     def pygame_key_event(self, speed):
         pygame.init()
-        pygame.joystick.init()
-
-        # 若只连接了一个手柄，此处带入的参数一般都是0
-        joystick = pygame.joystick.Joystick(0)
-        # 手柄对象初始化
-        joystick.init()
-
         pygame.display.set_mode((640, 480))
         try:
             while True:
                 for event in pygame.event.get():
-                    print("event.type:" + str(event.type))
-                    print("event.type:" + str(pygame.JOYBUTTONDOWN))
                     if event.type == KEYDOWN:
                         if event.key == K_UP:
                             self.t_up(speed)
