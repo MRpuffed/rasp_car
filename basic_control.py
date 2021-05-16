@@ -83,30 +83,3 @@ class BasicControl(object):
         GPIO.output(self.BIN2, True)  # BIN2
         GPIO.output(self.BIN1, False)  # BIN1
         time.sleep(t_time)
-
-    def pygame_key_event(self, speed):
-        pygame.init()
-        pygame.display.set_mode((640, 480))
-        try:
-            while True:
-                for event in pygame.event.get():
-                    if event.type == KEYDOWN:
-                        if event.key == K_UP:
-                            self.t_up(speed)
-                        elif event.key == K_DOWN:
-                            self.t_down(speed)
-                        elif event.key == K_LEFT:
-                            self.t_left(speed)
-                        elif event.key == K_RIGHT:
-                            self.t_right(speed)
-                        elif event.key == K_SPACE:
-                            self.t_stop()
-        except KeyboardInterrupt:
-            GPIO.cleanup()
-
-
-if __name__ == "__main__":
-    import pygame
-    from pygame.locals import *
-    t_speed = 30
-    BasicControl().pygame_key_event(t_speed)
