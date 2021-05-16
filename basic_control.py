@@ -117,5 +117,5 @@ class BasicControl(object):
 if __name__ == "__main__":
     import pygame
     from pygame.locals import *
-    t_speed = 10
+    t_speed = 30
     BasicControl().pygame_key_event(t_speed)
