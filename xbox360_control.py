@@ -5,7 +5,7 @@
 # @File    : basic_control.py
 # @Software: PyCharm
 import RPi.GPIO as GPIO
-from basic_control import BasicControl
+from infrared_avoid import InfraredAvoid
 
 
 class Xbox360Control(object):
@@ -13,7 +13,7 @@ class Xbox360Control(object):
     def pygame_key_event(speed=20):
         pygame.init()
         pygame.joystick.init()
-        base_control = BasicControl()
+        base_control = InfraredAvoid()
         # 返回游戏杆的数量
         if pygame.joystick.get_count() == 1:
             # 若只连接了一个手柄，此处带入的参数一般都是0
@@ -32,6 +32,7 @@ class Xbox360Control(object):
             # print(6, 0, 11, 1)
             try:
                 while True:
+                    base_control.avoid_obstacle(speed)
                     for i in range(joystick_axes_num):
                         axis = joystick.get_axis(i)
                         if i == 1 and axis == -1.0:

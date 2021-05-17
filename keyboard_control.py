@@ -5,7 +5,7 @@
 # @File    : basic_control.py
 # @Software: PyCharm
 import RPi.GPIO as GPIO
-from basic_control import BasicControl
+from infrared_avoid import InfraredAvoid
 
 
 class KeyboardControl(object):
@@ -13,9 +13,10 @@ class KeyboardControl(object):
     def pygame_key_event(speed):
         pygame.init()
         pygame.display.set_mode((640, 480))
-        base_control = BasicControl()
+        base_control = InfraredAvoid()
         try:
             while True:
+                base_control.avoid_obstacle(speed)
                 for event in pygame.event.get():
                     if event.type == KEYDOWN:
                         if event.key == K_UP:
